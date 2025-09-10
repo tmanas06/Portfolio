@@ -17,12 +17,13 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
   const [currentSrc, setCurrentSrc] = useState(props.src)
   const [gatewayIndex, setGatewayIndex] = useState(0)
   const [showFallback, setShowFallback] = useState(false)
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
 
   const { src, alt, style, className, ...rest } = props
 
   // Check if this is a profile image
   const isProfileImage = alt?.toLowerCase().includes('profile') || 
-                        (src && src.toString().includes('bafkreicdrmmy574lkwcyfaiphazgfok62i3voz3mknlvnt7emuuhjfh5xq'))
+                        (src && (src.toString().includes('profile.jpg') || src.toString().includes('bafkreicdrmmy574lkwcyfaiphazgfok62i3voz3mknlvnt7emuuhjfh5xq')))
 
   // Extract CID from IPFS URL
   const extractCID = (url: string) => {
@@ -56,9 +57,10 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
     console.log('ImageWithFallback: Image loaded successfully', currentSrc)
     setShowFallback(false)
     // Clear any pending timeout
-    const timeout = setTimeout(() => {
-      // This ensures the fallback doesn't show after successful load
-    }, 0)
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+      setTimeoutId(null)
+    }
   }
 
   // Reset when src changes
@@ -68,10 +70,17 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
     setShowFallback(false)
     setGatewayIndex(0)
     
-    // For profile images, show fallback immediately if IPFS
+    // For profile images, show fallback immediately only if IPFS
     if (isProfileImage && src && src.toString().includes('/ipfs/')) {
       console.log('ImageWithFallback: Profile image with IPFS, showing fallback immediately')
       setShowFallback(true)
+      return
+    }
+    
+    // Skip timeout for local images (they should load quickly)
+    const isLocalImage = src && (src.toString().startsWith('/') || src.toString().startsWith('./') || src.toString().startsWith('../'))
+    if (isLocalImage) {
+      console.log('ImageWithFallback: Local image detected, skipping timeout')
       return
     }
     
@@ -82,8 +91,13 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
         setShowFallback(true)
       }
     }, 10000)
+    setTimeoutId(timeout)
 
-    return () => clearTimeout(timeout)
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
   }, [src, isProfileImage])
 
   // Always show something - either the image or fallback

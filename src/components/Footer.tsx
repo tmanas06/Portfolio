@@ -131,7 +131,7 @@ export function Footer() {
         >
           {/* Copyright */}
           <div className="flex items-center space-x-2 text-gray-400 text-sm">
-            <span>© {currentYear} T Manas Chakravarty. All rights reserved.</span>
+            {/* <span>© {currentYear} T Manas Chakravarty. All rights reserved.</span> */}
           </div>
 
           {/* Made with love */}
