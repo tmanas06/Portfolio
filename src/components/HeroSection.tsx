@@ -26,9 +26,8 @@ export function HeroSection() {
   return (
     <motion.section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
-      style={{ y, opacity }}
-    >
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black"
+      style={{ y, opacity }}>
       {/* Background Layer - Z-0 */}
       <div className="absolute inset-0 z-0">
         {/* Dynamic gradient background with mouse tracking */}
@@ -123,101 +122,45 @@ export function HeroSection() {
       </div>
 
       {/* Main Content Layer - Z-10 */}
-      <div className="relative z-10 w-full flex items-center justify-center px-4">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Enhanced profile image with glassmorphism and glow */}
-          <motion.div
-            initial={{ scale: 0, rotateY: 180, opacity: 0 }}
-            animate={{ scale: 1, rotateY: 0, opacity: 1 }}
-            transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
-            className="relative w-40 h-40 mx-auto mb-8 group"
-            whileHover={{ scale: 1.05 }}
-          >
-            {/* Outer glow ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 p-1 animate-pulse">
-              <div className="w-full h-full rounded-full bg-black p-1">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-900/20 to-purple-900/20 backdrop-blur-md p-2">
-                  <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-sm p-2">
-                    <img
-                      src={"/profile.jpg"}
-                      alt="Profile photo of T Manas Chakravarty"
-                      className="w-full h-full rounded-full object-cover transition-all duration-300 group-hover:scale-105 bg-gray-800"
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = "/default-profile.png";
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Floating tech icons */}
-            <motion.div
-              animate={{ y: [-5, 5, -5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute -top-2 -right-2 w-8 h-8 bg-cyan-500/20 backdrop-blur-md rounded-full flex items-center justify-center border border-cyan-400/30 z-10"
-            >
-              <Code size={16} className="text-cyan-400" />
-            </motion.div>
-            
-            <motion.div
-              animate={{ y: [5, -5, 5] }}
-              transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-              className="absolute -bottom-2 -left-2 w-8 h-8 bg-purple-500/20 backdrop-blur-md rounded-full flex items-center justify-center border border-purple-400/30 z-10"
-            >
-              <Sparkles size={16} className="text-purple-400" />
-            </motion.div>
-          </motion.div>
-
-          {/* Enhanced title with multiple effects */}
-          <motion.h1
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3, type: "spring", bounce: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 relative"
-          >
-            <span className="bg-gradient-to-r from-white via-cyan-100 to-purple-100 bg-clip-text text-transparent">
-              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent" style={{ WebkitTextStroke: '1px #fff', color: '#fff' }}>
-                T Manas Chakravarty
-              </span>
-            </span>
-          </motion.h1>
-
-          {/* Enhanced subtitle with icon */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center sm:space-x-3 mb-8"
-          >
-            <div className="flex items-center space-x-3">
-              <Zap className="text-cyan-400 animate-pulse" size={20} />
-              <p className="text-xl sm:text-2xl md:text-3xl text-gray-100 font-semibold bg-gradient-to-r from-cyan-200 to-purple-200 bg-clip-text text-transparent text-center">
-                <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent" style={{ WebkitTextStroke: '0.5px #fff', color: '#fff' }}>
-                  Blockchain Developer & Cybersecurity Specialist
-                </span>
-              </p>
-              <Zap className="text-purple-400 animate-pulse" size={20} />
-            </div>
-          </motion.div>
-
-          {/* Enhanced description with glassmorphism */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="relative mb-12"
-          >
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 max-w-3xl mx-auto">
-              <p className="text-base sm:text-lg text-gray-100 leading-relaxed">
-                Final-year <span className="text-cyan-300 font-semibold">B.Tech (CSE Hons.)</span> student specializing in 
-                <span className="text-purple-300 font-semibold"> Cybersecurity</span> and 
-                <span className="text-cyan-300 font-semibold"> Blockchain</span>. 
-                Building secure, efficient, and innovative software solutions with smart contracts and modern frameworks.
-              </p>
-            </div>
-          </motion.div>
+  <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 pt-12 pb-8">
+        {/* Profile image with background glow */}
+        <div className="relative flex flex-col items-center justify-center mb-6">
+          <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-60 z-0 w-48 h-48" />
+          <div className="relative w-40 h-40 flex items-center justify-center z-10">
+            <img
+              src={"/profile.jpg"}
+              alt="Profile photo of T Manas Chakravarty"
+              className="w-36 h-36 object-cover rounded-full border-4 border-white shadow-2xl bg-white"
+              style={{ background: '#fff', width: '9rem', height: '9rem', maxWidth: '100%', maxHeight: '100%' }}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/default-profile.png";
+              }}
+            />
+          </div>
+        </div>
+        {/* Name */}
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-2 text-center tracking-tight drop-shadow-lg">
+          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent" style={{ WebkitTextStroke: '1px #fff', color: '#fff' }}>
+            T Manas Chakravarty
+          </span>
+        </h1>
+        {/* Subtitle */}
+        <div className="flex items-center justify-center mb-4">
+          <span className="mr-2"><Zap className="text-cyan-400 animate-pulse" size={20} /></span>
+          <span className="text-xl sm:text-2xl md:text-3xl font-semibold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent text-center" style={{ WebkitTextStroke: '0.5px #fff', color: '#fff' }}>
+            Blockchain Developer & Cybersecurity Specialist
+          </span>
+          <span className="ml-2"><Zap className="text-purple-400 animate-pulse" size={20} /></span>
+        </div>
+        {/* Description */}
+        <div className="max-w-2xl mx-auto mb-8">
+          <p className="text-base sm:text-lg text-gray-100 leading-relaxed text-center bg-black/40 rounded-xl px-6 py-4 border border-white/10 shadow-md">
+            Final-year <span className="text-cyan-300 font-semibold">B.Tech (CSE Hons.)</span> student specializing in
+            <span className="text-purple-300 font-semibold"> Cybersecurity</span> and
+            <span className="text-cyan-300 font-semibold"> Blockchain</span>. Building secure, efficient, and innovative software solutions with smart contracts and modern frameworks.
+          </p>
+        </div>
 
           {/* Enhanced social links with glassmorphism */}
           <motion.div
@@ -317,7 +260,6 @@ export function HeroSection() {
             <div className="absolute inset-0 rounded-full bg-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.button>
         </div>
-      </div>
     </motion.section>
-  )
+  );
 }
