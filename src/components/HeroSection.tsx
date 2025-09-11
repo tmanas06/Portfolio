@@ -40,7 +40,7 @@ export function HeroSection() {
         />
 
         {/* Animated grid pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.08%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30 animate-pulse" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.08%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
       </div>
 
       {/* Floating Elements Layer - Z-1 */}
@@ -54,7 +54,6 @@ export function HeroSection() {
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-20 left-20 w-40 h-40 rounded-full bg-gradient-to-r from-cyan-400/20 to-purple-600/20 backdrop-blur-md border border-white/10 shadow-2xl shadow-cyan-500/20"
-          style={{ filter: 'blur(1px)' }}
         />
         
         <motion.div
@@ -65,7 +64,6 @@ export function HeroSection() {
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-32 right-32 w-32 h-32 rounded-full bg-gradient-to-r from-purple-400/15 to-pink-600/15 backdrop-blur-md border border-white/10 shadow-2xl shadow-purple-500/20"
-          style={{ filter: 'blur(1px)' }}
         />
         
         <motion.div
@@ -141,12 +139,12 @@ export function HeroSection() {
                 <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-900/20 to-purple-900/20 backdrop-blur-md p-2">
                   <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-sm p-2">
                     <img
-                      src="/profile.jpg"
-                      alt="Profile"
-                      className="w-full h-full rounded-full object-cover transition-all duration-300 group-hover:scale-105"
+                      src={"/profile.jpg"}
+                      alt="Profile photo of T Manas Chakravarty"
+                      className="w-full h-full rounded-full object-cover transition-all duration-300 group-hover:scale-105 bg-gray-800"
                       onError={(e) => {
-                        // Fallback if image doesn't load
-                        e.currentTarget.src = "data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='160' height='160' fill='%234f46e5'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='white'%3ETM%3C/text%3E%3C/svg%3E";
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/default-profile.png";
                       }}
                     />
                   </div>
@@ -179,11 +177,11 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 0.3, type: "spring", bounce: 0.3 }}
             className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 relative"
           >
-            <span className="bg-gradient-to-r from-white via-cyan-100 to-purple-100 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] filter contrast-125">
-              T Manas Chakravarty
+            <span className="bg-gradient-to-r from-white via-cyan-100 to-purple-100 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent" style={{ WebkitTextStroke: '1px #fff', color: '#fff' }}>
+                T Manas Chakravarty
+              </span>
             </span>
-            {/* Enhanced text shadow for better readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-purple-400/30 blur-xl -z-10 animate-pulse" />
           </motion.h1>
 
           {/* Enhanced subtitle with icon */}
@@ -195,8 +193,10 @@ export function HeroSection() {
           >
             <div className="flex items-center space-x-3">
               <Zap className="text-cyan-400 animate-pulse" size={20} />
-              <p className="text-xl sm:text-2xl md:text-3xl text-gray-100 font-semibold bg-gradient-to-r from-cyan-200 to-purple-200 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] filter contrast-110 text-center">
-                Blockchain Developer & Cybersecurity Specialist
+              <p className="text-xl sm:text-2xl md:text-3xl text-gray-100 font-semibold bg-gradient-to-r from-cyan-200 to-purple-200 bg-clip-text text-transparent text-center">
+                <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent" style={{ WebkitTextStroke: '0.5px #fff', color: '#fff' }}>
+                  Blockchain Developer & Cybersecurity Specialist
+                </span>
               </p>
               <Zap className="text-purple-400 animate-pulse" size={20} />
             </div>
@@ -210,7 +210,7 @@ export function HeroSection() {
             className="relative mb-12"
           >
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 max-w-3xl mx-auto">
-              <p className="text-base sm:text-lg text-gray-100 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
+              <p className="text-base sm:text-lg text-gray-100 leading-relaxed">
                 Final-year <span className="text-cyan-300 font-semibold">B.Tech (CSE Hons.)</span> student specializing in 
                 <span className="text-purple-300 font-semibold"> Cybersecurity</span> and 
                 <span className="text-cyan-300 font-semibold"> Blockchain</span>. 
@@ -314,7 +314,7 @@ export function HeroSection() {
               size={32} 
               className="text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" 
             />
-            <div className="absolute inset-0 rounded-full bg-cyan-400/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 rounded-full bg-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.button>
         </div>
       </div>
