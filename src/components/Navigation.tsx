@@ -43,6 +43,8 @@ export function Navigation() {
           ? 'bg-gradient-to-b from-black/40 via-black/20 to-transparent backdrop-blur-2xl border-b border-white/20 shadow-2xl'
           : 'bg-transparent'
       }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -88,7 +90,8 @@ export function Navigation() {
             whileTap={{ scale: 0.95 }}
             whileHover={{ scale: 1.1, rotate: 90 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-cyan-300 p-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 backdrop-blur-sm"
+            className="md:hidden text-cyan-300 p-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
@@ -102,7 +105,7 @@ export function Navigation() {
           opacity: isMobileMenuOpen ? 1 : 0,
           height: isMobileMenuOpen ? 'auto' : 0
         }}
-        className="md:hidden bg-gradient-to-b from-black/40 via-black/20 to-transparent backdrop-blur-2xl border-t border-white/20 overflow-hidden shadow-2xl"
+        className="md:hidden bg-gradient-to-b from-black/80 via-black/60 to-black/30 backdrop-blur-2xl border-t border-white/20 overflow-hidden shadow-2xl"
       >
         <div className="px-4 py-4 space-y-4">
           {navItems.map((item) => (
@@ -110,7 +113,7 @@ export function Navigation() {
               key={item.href}
               whileHover={{ x: 10, scale: 1.05 }}
               onClick={() => scrollToSection(item.href)}
-              className="block text-gray-300 hover:text-cyan-400 transition-all py-2 px-3 rounded-lg hover:bg-white/5 w-full text-left"
+              className="block text-gray-300 hover:text-cyan-400 transition-all py-2 px-3 rounded-lg hover:bg-white/10 w-full text-left focus:outline-none focus:ring-2 focus:ring-cyan-400"
             >
               {item.label}
             </motion.button>

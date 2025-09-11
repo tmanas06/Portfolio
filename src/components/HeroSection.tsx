@@ -200,19 +200,20 @@ export function HeroSection() {
           >
             <motion.button
               whileHover={{ 
-                scale: 1.05, 
-                boxShadow: '0 15px 40px rgba(34, 211, 238, 0.4)',
-                y: -3
+                scale: 1.08, 
+                boxShadow: '0 8px 32px 0 rgba(34,211,238,0.25), 0 1.5px 8px 0 rgba(168,85,247,0.18)',
+                y: -4
               }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.97 }}
               onClick={scrollToAbout}
-              className="w-full sm:w-auto px-8 sm:px-10 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 backdrop-blur-sm border border-white/20 relative overflow-hidden group"
+              className="w-full sm:w-auto px-3 sm:px-4 py-4 max-w-[180px] bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white/20 relative overflow-hidden group backdrop-blur-[6px] focus:outline-none focus:ring-2 focus:ring-cyan-400"
             >
               <span className="relative z-10 flex items-center justify-center space-x-2">
-                <Sparkles size={20} />
-                <span>Explore My Work</span>
+                <Sparkles size={22} className="drop-shadow-md" />
+                <span className="drop-shadow-lg">Explore My Work</span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/70 via-purple-500/60 to-pink-500/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full blur-[2px]" />
+              <div className="absolute inset-0 rounded-full border border-white/30 opacity-40 pointer-events-none" />
             </motion.button>
             
             <motion.a
@@ -223,7 +224,7 @@ export function HeroSection() {
                 y: -3
               }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-8 sm:px-10 py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-full font-semibold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 relative overflow-hidden group"
+              className="w-full sm:w-auto px-3 sm:px-4 py-4 max-w-[180px] bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-full font-semibold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 relative overflow-hidden group"
             >
               <span className="relative z-10 flex items-center justify-center space-x-2">
                 <Mail size={20} />
