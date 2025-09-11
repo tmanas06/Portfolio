@@ -37,8 +37,6 @@ export function HeroSection() {
             background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 51, 234, 0.15) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(6, 182, 212, 0.1) 100%)`
           }}
         />
-
-        {/* Animated grid pattern */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.08%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
       </div>
 
@@ -123,22 +121,18 @@ export function HeroSection() {
 
       {/* Main Content Layer - Z-10 */}
   <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 pt-12 pb-8">
-        {/* Profile image with background glow */}
-        <div className="relative flex flex-col items-center justify-center mb-6">
-          <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-60 z-0 w-48 h-48" />
-          <div className="relative w-40 h-40 flex items-center justify-center z-10">
-            <img
-              src={"/profile.jpg"}
-              alt="Profile photo of T Manas Chakravarty"
-              className="w-36 h-36 object-cover rounded-full border-4 border-white shadow-2xl bg-white"
-              style={{ background: '#fff', width: '9rem', height: '11rem', maxWidth: '100%', maxHeight: '100%' }}
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = "/default-profile.png";
-              }}
-            />
-          </div>
-        </div>
+    {/* Profile image with background glow */}
+    <div className="relative flex flex-col items-center justify-center mb-6">
+      <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 blur-2xl opacity-60 z-0 w-48 h-48" />
+      <div className="relative w-40 h-40 flex items-center justify-center z-10">
+        <img
+          src="https://media.licdn.com/dms/image/v2/D5603AQGEd3L0j5NXlw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1710756562217?e=1760572800&v=beta&t=1SktKI8uYN7gmR5xL7egclwtpESiwDjuHN6dkSci8TU"
+          alt="Profile photo of T Manas Chakravarty"
+          className="w-36 h-36 object-cover rounded-full border-4 border-white shadow-2xl bg-white"
+          style={{ background: '#fff', width: '9rem', height: '9rem', maxWidth: '100%', maxHeight: '100%' }}
+        />
+      </div>
+    </div>
         {/* Name */}
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-2 text-center tracking-tight drop-shadow-lg">
           <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent" style={{ WebkitTextStroke: '1px #fff', color: '#fff' }}>
@@ -160,48 +154,42 @@ export function HeroSection() {
             <span className="text-purple-300 font-semibold"> Cybersecurity</span> and
             <span className="text-cyan-300 font-semibold"> Blockchain</span>. Building secure, efficient, and innovative software solutions with smart contracts and modern frameworks.
           </p>
-        </div>
-
-          {/* Enhanced social links with glassmorphism */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
-          >
+          <div className="flex flex-wrap justify-center gap-4 mt-4">
             {[
               { icon: Github, href: 'https://github.com/tmanas06', label: 'GitHub', color: 'from-gray-600 to-gray-800' },
               { icon: Linkedin, href: 'https://www.linkedin.com/in/t-manas-chakravarty-91958224b/', label: 'LinkedIn', color: 'from-blue-600 to-blue-800' },
               { icon: Mail, href: 'mailto:2210030003cse@gmail.com', label: 'Email', color: 'from-red-500 to-red-700' },
-              { icon: Twitter, href: 'https://x.com/tmanas2004', label: 'Twitter', color: 'from-sky-500 to-sky-700' },
+              { icon: Twitter, href: 'httsps://x.com/tmanas2004', label: 'Twitter', color: 'from-sky-500 to-sky-700' },
               { icon: null, href: 'https://techieresearch.blogspot.com/', label: 'Blog', color: 'from-purple-600 to-pink-600' }
-            ].map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target={social.label !== 'Email' ? '_blank' : undefined}
-                rel={social.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.15, 
-                  rotateY: social.icon ? 360 : 0,
-                  boxShadow: '0 10px 30px rgba(34, 211, 238, 0.4)',
-                  y: -5
-                }}
-                whileTap={{ scale: 0.95 }}
-                className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-br ${social.color} bg-opacity-10 backdrop-blur-md border border-white/20 text-white hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center group ${social.icon ? 'w-12 h-12 sm:w-14 sm:h-14' : 'px-4 sm:px-6'}`}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {social.icon ? (
-                  <social.icon size={20} className="group-hover:scale-110 transition-transform" />
-                ) : (
-                  <span className="text-sm sm:text-lg font-bold group-hover:scale-105 transition-transform">Blog</span>
-                )}
-              </motion.a>
-            ))}
-          </motion.div>
+            ].map((social, index) => {
+              return (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target={social.label !== 'Email' ? '_blank' : undefined}
+                  rel={social.label !== 'Email' ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.15, 
+                    rotateY: social.icon ? 360 : 0,
+                    boxShadow: '0 10px 30px rgba(34, 211, 238, 0.4)',
+                    y: -5
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-br ${social.color} bg-opacity-10 backdrop-blur-md border border-white/20 text-white hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center group ${social.icon ? 'w-12 h-12 sm:w-14 sm:h-14' : 'px-4 sm:px-6'}`}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {social.icon ? (
+                    <social.icon size={20} className="group-hover:scale-110 transition-transform" />
+                  ) : (
+                    <span className="text-sm sm:text-lg font-bold group-hover:scale-105 transition-transform">Blog</span>
+                  )}
+                </motion.a>
+              );
+            })}
+          </div>
 
           {/* Enhanced CTA buttons with glassmorphism */}
           <motion.div
@@ -259,7 +247,8 @@ export function HeroSection() {
             />
             <div className="absolute inset-0 rounded-full bg-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.button>
-        </div>
-    </motion.section>
+    </div>
+  </div>
+  </motion.section>
   );
 }
