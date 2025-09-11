@@ -73,9 +73,9 @@ export function ContactSection() {
   ]
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-cyan-400' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-purple-400' },
-    { icon: Twitter, href: '#', label: 'Twitter', color: 'hover:text-pink-400' }
+  { icon: Github, href: 'https://github.com/tmanas06', label: 'GitHub', color: 'hover:text-cyan-400' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/t-manas-chakravarty-91958224b/', label: 'LinkedIn', color: 'hover:text-purple-400' },
+  { icon: Twitter, href: 'https://x.com/tmanas2004', label: 'Twitter', color: 'hover:text-pink-400' }
   ]
 
   return (
