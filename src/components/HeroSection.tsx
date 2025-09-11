@@ -131,7 +131,7 @@ export function HeroSection() {
               src={"/profile.jpg"}
               alt="Profile photo of T Manas Chakravarty"
               className="w-36 h-36 object-cover rounded-full border-4 border-white shadow-2xl bg-white"
-              style={{ background: '#fff', width: '9rem', height: '9rem', maxWidth: '100%', maxHeight: '100%' }}
+              style={{ background: '#fff', width: '9rem', height: '11rem', maxWidth: '100%', maxHeight: '100%' }}
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = "/default-profile.png";
