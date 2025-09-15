@@ -1,378 +1,198 @@
-import React, { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'motion/react'
-import { 
-  Code2, 
-  Database, 
-  Palette, 
-  Smartphone, 
-  Globe, 
-  Server,
-  GitBranch,
-  Zap
-} from 'lucide-react'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform, useInView } from 'motion/react'
+import { Code, Shield, Database, Cloud, Smartphone, Globe, Zap, Cpu } from 'lucide-react'
 
 export function SkillsSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -50])
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.8])
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  // Generate floating orbs data
-  const floatingOrbs = Array.from({ length: 6 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 150 + 80,
-    duration: Math.random() * 15 + 10,
-    delay: Math.random() * 3,
-    gradient: i % 3 === 0 ? 'from-cyan-400/20 to-purple-600/20' : 
-             i % 3 === 1 ? 'from-purple-500/20 to-pink-600/20' : 
-             'from-blue-400/20 to-cyan-600/20'
-  }))
-
-  // Generate glowing particles
-  const glowingParticles = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    duration: Math.random() * 3 + 2,
-    delay: Math.random() * 1.5,
-    gradient: i % 3 === 0 ? 'from-cyan-400 to-purple-600' : 
-             i % 3 === 1 ? 'from-purple-500 to-pink-600' : 
-             'from-blue-400 to-cyan-600'
-  }))
-
-  // Generate 3D geometric shapes
-  const geometricShapes = Array.from({ length: 4 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 40 + 20,
-    rotationX: Math.random() * 360,
-    rotationY: Math.random() * 360,
-    rotationZ: Math.random() * 360,
-    duration: Math.random() * 20 + 15,
-    delay: Math.random() * 3,
-    shape: i % 3 === 0 ? 'cube' : i % 3 === 1 ? 'pyramid' : 'diamond',
-    gradient: i % 3 === 0 ? 'border-cyan-400/30' : 
-             i % 3 === 1 ? 'border-purple-500/30' : 
-             'border-blue-400/30'
-  }))
   const skillCategories = [
     {
-      title: 'Programming Languages',
-      icon: Code2,
-      color: 'from-cyan-400 to-blue-500',
-      skills: ['JavaScript', 'TypeScript', 'Python', 'C', 'Java', 'Solidity']
+      title: 'Blockchain & Web3',
+      icon: Shield,
+      color: 'from-cyan-500 to-blue-600',
+      skills: [
+        { name: 'Ethereum', level: 90 },
+        { name: 'Solana', level: 85 },
+        { name: 'Polygon', level: 80 },
+        { name: 'Smart Contracts', level: 95 },
+        { name: 'Web3.js', level: 88 },
+        { name: 'Hardhat', level: 85 }
+      ]
     },
     {
-      title: 'Frameworks & Libraries',
-      icon: Server,
-      color: 'from-green-400 to-emerald-500',
-      skills: ['Angular.js', 'React.js', 'Node.js', 'Web3.js', 'Ethers.js']
+      title: 'Frontend Development',
+      icon: Globe,
+      color: 'from-purple-500 to-pink-600',
+      skills: [
+        { name: 'React.js', level: 95 },
+        { name: 'TypeScript', level: 90 },
+        { name: 'Next.js', level: 85 },
+        { name: 'Tailwind CSS', level: 92 },
+        { name: 'Vue.js', level: 75 },
+        { name: 'HTML/CSS', level: 98 }
+      ]
     },
     {
-      title: 'Blockchains',
+      title: 'Backend Development',
       icon: Database,
-      color: 'from-purple-400 to-pink-500',
-      skills: ['Ethereum', 'Solana', 'Polygon', 'BSV Blockchain']
-    },
-    {
-      title: 'Databases & Tools',
-      icon: Smartphone,
-      color: 'from-orange-400 to-red-500',
-      skills: ['MongoDB', 'Pinata', 'Git', 'GitHub', 'Linux', 'Google Cloud']
+      color: 'from-green-500 to-emerald-600',
+      skills: [
+        { name: 'Node.js', level: 90 },
+        { name: 'Python', level: 85 },
+        { name: 'Express.js', level: 88 },
+        { name: 'MongoDB', level: 82 },
+        { name: 'PostgreSQL', level: 80 },
+        { name: 'REST APIs', level: 92 }
+      ]
     },
     {
       title: 'Cybersecurity',
-      icon: Palette,
-      color: 'from-pink-400 to-rose-500',
-      skills: ['Ethical Hacking', 'Vulnerability Assessment', 'Security Auditing']
+      icon: Shield,
+      color: 'from-red-500 to-orange-600',
+      skills: [
+        { name: 'Ethical Hacking', level: 85 },
+        { name: 'Penetration Testing', level: 80 },
+        { name: 'Vulnerability Assessment', level: 88 },
+        { name: 'Security Audits', level: 82 },
+        { name: 'OWASP', level: 85 },
+        { name: 'Network Security', level: 78 }
+      ]
     },
     {
-      title: 'Additional Skills',
-      icon: GitBranch,
-      color: 'from-indigo-400 to-purple-500',
-      skills: ['API Integration', 'Automation', 'Smart Contracts', 'DeFi']
+      title: 'Mobile Development',
+      icon: Smartphone,
+      color: 'from-indigo-500 to-purple-600',
+      skills: [
+        { name: 'React Native', level: 80 },
+        { name: 'Flutter', level: 75 },
+        { name: 'iOS Development', level: 70 },
+        { name: 'Android Development', level: 75 },
+        { name: 'Cross-platform', level: 85 }
+      ]
+    },
+    {
+      title: 'Cloud & DevOps',
+      icon: Cloud,
+      color: 'from-blue-500 to-cyan-600',
+      skills: [
+        { name: 'AWS', level: 80 },
+        { name: 'Docker', level: 85 },
+        { name: 'Kubernetes', level: 75 },
+        { name: 'CI/CD', level: 82 },
+        { name: 'Linux', level: 88 },
+        { name: 'Git', level: 95 }
+      ]
     }
   ]
 
-  const technologies = [
-    'JavaScript', 'TypeScript', 'Python', 'Solidity', 'React.js', 'Node.js',
-    'Ethereum', 'Solana', 'Polygon', 'Web3.js', 'Ethers.js', 'MongoDB'
-  ]
-
   return (
-    <section id="skills" className="py-20 px-4 relative overflow-hidden">
-      {/* Mouse-tracking radial gradient background */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(34, 211, 238, 0.1) 0%, rgba(147, 51, 234, 0.05) 50%, transparent 100%)`
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black" />
-      
-      {/* Floating Orbs with Glassmorphism */}
-      {floatingOrbs.map((orb) => (
-        <motion.div
-          key={orb.id}
-          className={`absolute rounded-full bg-gradient-to-br ${orb.gradient} backdrop-blur-3xl border border-white/10 shadow-2xl`}
-          style={{
-            left: `${orb.x}%`,
-            top: `${orb.y}%`,
-            width: orb.size,
-            height: orb.size,
-            filter: 'blur(40px)'
-          }}
-          animate={{
-            x: [0, Math.random() * 80 - 40, Math.random() * 160 - 80, 0],
-            y: [0, Math.random() * 80 - 40, Math.random() * 160 - 80, 0],
-            scale: [1, 1.2, 0.8, 1]
-          }}
-          transition={{
-            duration: orb.duration,
-            delay: orb.delay,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
-      
-      {/* Glowing Particles */}
-      {glowingParticles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className={`absolute rounded-full bg-gradient-to-r ${particle.gradient}`}
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: particle.size,
-            height: particle.size,
-            boxShadow: `0 0 ${particle.size * 4}px ${particle.size * 2}px rgba(34, 211, 238, 0.3)`
-          }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
-            y: [0, -Math.random() * 80 - 40]
-          }}
-          transition={{
-            duration: particle.duration,
-            delay: particle.delay,
-            repeat: Infinity,
-            ease: "easeOut"
-          }}
-        />
-      ))}
-      
-      {/* Floating 3D Geometric Shapes */}
-      {geometricShapes.map((shape) => {
-        const shapeStyle = {
-          left: `${shape.x}%`,
-          top: `${shape.y}%`,
-          width: shape.size,
-          height: shape.size,
-          border: `2px solid ${shape.gradient.replace('border-', '').replace('/30', '')}`,
-          background: 'linear-gradient(45deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))',
-          backdropFilter: 'blur(10px)'
-        }
-        
-        return (
-          <motion.div
-            key={shape.id}
-            className="absolute"
-            style={shapeStyle}
-            animate={{
-              rotateX: [shape.rotationX, shape.rotationX + 360],
-              rotateY: [shape.rotationY, shape.rotationY + 360],
-              rotateZ: [shape.rotationZ, shape.rotationZ + 360],
-              scale: [1, 1.2, 0.8, 1]
-            }}
-            transition={{
-              duration: shape.duration,
-              delay: shape.delay,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          >
-            {shape.shape === 'cube' && (
-              <div className="w-full h-full transform-style-3d">
-                <div className="absolute inset-0 border-2 border-cyan-400/30" />
-                <div className="absolute inset-0 border-2 border-purple-500/30 transform rotate-90" />
-              </div>
-            )}
-            {shape.shape === 'pyramid' && (
-              <div className="w-full h-full bg-gradient-to-br from-purple-500/10 to-cyan-400/10" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
-            )}
-            {shape.shape === 'diamond' && (
-              <div className="w-full h-full bg-gradient-to-br from-blue-400/10 to-purple-600/10" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
-            )}
-          </motion.div>
-        )
-      })}
-      
-      {/* Floating Tech Bubbles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {technologies.map((tech, index) => (
-          <motion.div
-            key={tech}
-            initial={{ 
-              opacity: 0, 
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight
-            }}
-            animate={{ 
-              opacity: [0.1, 0.3, 0.1],
-              x: [
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerWidth
-              ],
-              y: [
-                Math.random() * window.innerHeight,
-                Math.random() * window.innerHeight,
-                Math.random() * window.innerHeight
-              ]
-            }}
-            transition={{
-              duration: 20 + Math.random() * 10,
-              repeat: Infinity,
-              ease: "linear",
-              delay: index * 0.5
-            }}
-            className="absolute text-white/10 text-sm font-mono pointer-events-none"
-          >
-            {tech}
-          </motion.div>
-        ))}
-      </div>
+    <motion.section 
+      ref={ref}
+      id="skills" 
+      className="relative min-h-screen py-20 px-4 overflow-hidden"
+      style={{ y }}
+    >
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-cyan-900/5" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
 
-      <motion.div 
-        className="max-w-6xl mx-auto relative z-10"
-        style={{ y, opacity }}
-      >
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30, rotateX: -15 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
             Skills & Expertise
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern, scalable applications
+            A comprehensive overview of my technical skills and proficiency levels
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 mx-auto rounded-full mt-6" />
         </motion.div>
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
+          {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 50, rotateX: -30 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)'
-              }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
               viewport={{ once: true }}
-              className="relative group"
-              style={{ transformStyle: 'preserve-3d' }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
             >
-              {/* Card */}
-              <div className="relative p-6 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden">
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <motion.div
-                    whileHover={{ rotateY: 360, scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                    className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br ${category.color} rounded-xl mb-4 shadow-lg`}
-                  >
-                    <category.icon size={28} className="text-white" />
-                  </motion.div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    {category.title}
-                  </h3>
-
-                  {/* Skills List */}
-                  <div className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ 
-                          duration: 0.4, 
-                          delay: index * 0.1 + skillIndex * 0.05 
-                        }}
-                        viewport={{ once: true }}
-                        className="flex items-center space-x-2"
-                      >
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ 
-                            duration: 2, 
-                            repeat: Infinity, 
-                            ease: "linear",
-                            delay: skillIndex * 0.2
-                          }}
-                          className={`w-2 h-2 bg-gradient-to-r ${category.color} rounded-full`}
-                        />
-                        <span className="text-gray-300 text-sm">{skill}</span>
-                      </motion.div>
-                    ))}
-                  </div>
+              {/* Category Header */}
+              <div className="flex items-center mb-6">
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <category.icon size={24} className="text-white" />
                 </div>
+                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
+              </div>
 
-                {/* Hover Effect Light */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileHover={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${category.color} rounded-full blur-3xl opacity-20 -translate-y-16 translate-x-16`}
-                />
+              {/* Skills List */}
+              <div className="space-y-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
+                    viewport={{ once: true }}
+                    className="space-y-2"
+                  >
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 font-medium">{skill.name}</span>
+                      <span className="text-cyan-400 font-semibold">{skill.level}%</span>
+                    </div>
+                    <div className="w-full bg-gray-700/50 rounded-full h-2">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) + 0.5 }}
+                        viewport={{ once: true }}
+                        className={`h-2 rounded-full bg-gradient-to-r ${category.color}`}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Floating Skill Indicators */}
+        {/* Call to Action */}
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 right-10 opacity-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
         >
-          <Zap size={40} className="text-cyan-400" />
+          <div className="bg-gradient-to-r from-cyan-500/10 to-purple-600/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 max-w-2xl mx-auto">
+            <Cpu className="w-16 h-16 mx-auto mb-4 text-cyan-400" />
+            <h3 className="text-2xl font-bold text-white mb-4">Always Learning</h3>
+            <p className="text-gray-300 mb-6">
+              I'm constantly exploring new technologies and expanding my skill set to stay at the forefront of innovation.
+            </p>
+            <motion.a
+              href="#projects"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
+            >
+              <Zap size={20} className="mr-2" />
+              View My Projects
+            </motion.a>
+          </div>
         </motion.div>
-
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-20 left-10 opacity-20"
-        >
-          <Globe size={35} className="text-purple-400" />
-        </motion.div>
-      </motion.div>
-    </section>
+      </div>
+    </motion.section>
   )
 }
