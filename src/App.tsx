@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { ThemeProvider } from './contexts/ThemeContext'
 import { Navigation } from './components/Navigation'
 import { HeroSection } from './components/HeroSection'
 import { AboutSection } from './components/AboutSection'
@@ -67,17 +68,19 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      <Navigation />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
-        <MessagesSection />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-pattern text-white overflow-x-hidden transition-all duration-500">
+        <Navigation />
+        <main>
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <ContactSection />
+          <MessagesSection />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   )
 }

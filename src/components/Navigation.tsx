@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { Menu, X, Code, Shield, Zap } from 'lucide-react'
+import { ThemeToggle } from './ThemeToggle'
+import { useTheme } from '../contexts/ThemeContext'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +41,7 @@ export function Navigation() {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-black/80 backdrop-blur-md border-b border-white/10' 
+          ? `${theme === 'light' ? 'bg-white/90' : 'bg-black/80'} backdrop-blur-md border-b ${theme === 'light' ? 'border-gray-200' : 'border-white/10'}` 
           : 'bg-transparent'
       }`}
     >
@@ -52,7 +55,7 @@ export function Navigation() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
               <Code size={20} className="text-white" />
             </div>
-            <span className="text-xl font-bold text-white">T Manas</span>
+            <span className="text-2xl font-bold text-white">T Manas</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -63,11 +66,12 @@ export function Navigation() {
                 onClick={() => scrollToSection(item.href)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-gray-300 hover:text-white transition-colors duration-300 font-medium"
+                className={`${theme === 'light' ? 'text-gray-700 hover:text-purple-600' : 'text-gray-300 hover:text-white'} transition-colors duration-300 font-medium text-lg`}
               >
                 {item.label}
               </motion.button>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}

@@ -108,10 +108,10 @@ export function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
             Skills & Expertise
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
             A comprehensive overview of my technical skills and proficiency levels
           </p>
         </motion.div>
@@ -133,7 +133,7 @@ export function SkillsSection() {
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
                   <category.icon size={24} className="text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
+                <h3 className="text-2xl font-semibold text-white">{category.title}</h3>
               </div>
 
               {/* Skills List */}
@@ -148,8 +148,8 @@ export function SkillsSection() {
                     className="space-y-2"
                   >
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-300 font-medium">{skill.name}</span>
-                      <span className="text-cyan-400 font-semibold">{skill.level}%</span>
+                      <span className="text-gray-300 text-lg font-medium">{skill.name}</span>
+                      <span className="text-cyan-400 text-lg font-semibold">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-gray-700/50 rounded-full h-2">
                       <motion.div

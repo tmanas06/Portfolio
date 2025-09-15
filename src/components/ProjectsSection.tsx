@@ -87,9 +87,9 @@ export function ProjectsSection() {
       case 'In Development': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
       default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30'
     }
-  }
-
-  return (
+        }
+        
+        return (
     <motion.section 
       ref={ref}
       id="projects" 
@@ -102,17 +102,17 @@ export function ProjectsSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <motion.div
+      <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
             A showcase of my most impactful projects spanning blockchain, cybersecurity, and full-stack development
           </p>
         </motion.div>
@@ -131,10 +131,10 @@ export function ProjectsSection() {
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <ImageWithFallback
-                  src={project.image}
+                    <ImageWithFallback
+                      src={project.image}
                   fallback={project.image}
-                  alt={project.title}
+                      alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -152,16 +152,16 @@ export function ProjectsSection() {
                     {project.category}
                   </span>
                 </div>
-              </div>
+                </div>
 
               {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
-                  {project.title}
+                <div className="p-6">
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                    {project.title}
                 </h3>
                 
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                  {project.description}
+                <p className="text-gray-300 text-base mb-4 leading-relaxed">
+                    {project.description}
                 </p>
 
                 {/* Technologies */}
@@ -180,30 +180,30 @@ export function ProjectsSection() {
 
                 {/* Action Buttons */}
                 <div className="flex space-x-3">
-                  <motion.a
-                    href={project.github}
+                      <motion.a
+                        href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     className="flex-1 flex items-center justify-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-white text-sm font-medium transition-all duration-300"
-                  >
+                      >
                     <Github size={16} className="mr-2" />
                     Code
-                  </motion.a>
+                      </motion.a>
                   
                   {project.demo && (
-                    <motion.a
+                      <motion.a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 rounded-xl text-white text-sm font-medium transition-all duration-300"
-                    >
+                      >
                       <ExternalLink size={16} className="mr-2" />
                       Demo
-                    </motion.a>
+                      </motion.a>
                   )}
                 </div>
               </div>
@@ -225,17 +225,17 @@ export function ProjectsSection() {
             <p className="text-gray-300 mb-6">
               I'm constantly working on new projects and exploring innovative solutions. Check back regularly for updates!
             </p>
-            <motion.a
+          <motion.a
               href="https://github.com/tmanas06"
-              target="_blank"
-              rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.95 }}
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
-            >
+          >
               <Github size={20} className="mr-2" />
-              View All Projects
-            </motion.a>
+            View All Projects
+          </motion.a>
           </div>
         </motion.div>
       </div>

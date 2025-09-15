@@ -116,10 +116,10 @@ export function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
             Get In Touch
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
             Ready to collaborate or have a project in mind? Let's discuss how we can work together!
           </p>
         </motion.div>
@@ -134,8 +134,8 @@ export function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
-              <p className="text-gray-300 mb-8 leading-relaxed">
+              <h3 className="text-3xl font-bold text-white mb-6">Let's Connect</h3>
+              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
                 I'm always excited to work on new projects and collaborate with fellow developers. 
                 Whether you have a question, want to discuss a project, or just want to say hello, 
                 I'd love to hear from you!
@@ -159,8 +159,8 @@ export function ContactSection() {
                     <info.icon size={20} className="text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">{info.title}</h4>
-                    <p className="text-gray-300 text-sm">{info.value}</p>
+                    <h4 className="text-white text-lg font-semibold">{info.title}</h4>
+                    <p className="text-gray-300 text-base">{info.value}</p>
                   </div>
                 </motion.a>
               ))}
@@ -168,7 +168,7 @@ export function ContactSection() {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Follow Me</h4>
+              <h4 className="text-xl font-semibold text-white mb-4">Follow Me</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -216,7 +216,7 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+            <h3 className="text-3xl font-bold text-white mb-6">Send a Message</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">

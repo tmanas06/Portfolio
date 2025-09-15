@@ -42,12 +42,12 @@ export function Footer() {
                 <Code size={24} className="text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">T Manas Chakravarty</h3>
-                <p className="text-gray-400">Blockchain Developer & Cybersecurity Specialist</p>
+                <h3 className="text-3xl font-bold text-white">T Manas Chakravarty</h3>
+                <p className="text-gray-400 text-lg">Blockchain Developer & Cybersecurity Specialist</p>
               </div>
             </div>
             
-            <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
+            <p className="text-gray-300 text-lg mb-6 leading-relaxed max-w-md">
               Passionate about building secure, innovative solutions at the intersection of 
               blockchain technology and cybersecurity. Always learning, always building.
             </p>
@@ -81,7 +81,7 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">Quick Links</h4>
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.button
@@ -89,7 +89,7 @@ export function Footer() {
                   onClick={() => scrollToSection(link)}
                   whileHover={{ x: 5, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="block text-gray-300 hover:text-cyan-400 transition-colors duration-300"
+                  className="block text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-lg"
                 >
                   {link}
                 </motion.button>
@@ -104,19 +104,19 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">Get In Touch</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">Get In Touch</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-cyan-400" />
-                <span className="text-gray-300 text-sm">2210030003cse@gmail.com</span>
+                <span className="text-gray-300 text-base">2210030003cse@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Shield size={16} className="text-purple-400" />
-                <span className="text-gray-300 text-sm">Available for Work</span>
+                <span className="text-gray-300 text-base">Available for Work</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Zap size={16} className="text-yellow-400" />
-                <span className="text-gray-300 text-sm">Hyderabad, India</span>
+                <span className="text-gray-300 text-base">Hyderabad, India</span>
               </div>
             </div>
           </motion.div>

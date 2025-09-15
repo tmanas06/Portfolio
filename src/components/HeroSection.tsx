@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { ChevronDown, Github, Linkedin, Mail, Twitter, Sparkles, Zap, Code, Download, MapPin } from 'lucide-react'
+import { useTheme } from '../contexts/ThemeContext'
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -50])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const { theme } = useTheme()
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -26,21 +28,28 @@ export function HeroSection() {
   return (
     <motion.section 
       id="home" 
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black"
+      className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden transition-all duration-500 ${
+        theme === 'light' 
+          ? 'bg-gradient-to-br from-purple-50 via-blue-50 to-yellow-50' 
+          : 'bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-yellow-900/10'
+      }`}
       style={{ y, opacity }}
     >
-      {/* Modern Background */}
+      {/* Anime-inspired Background */}
       <div className="absolute inset-0">
         {/* Dynamic gradient with mouse tracking */}
         <div 
           className="absolute inset-0 transition-all duration-1000"
           style={{
-            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(34, 211, 238, 0.1) 0%, rgba(0, 0, 0, 0.9) 40%, rgba(147, 51, 234, 0.05) 100%)`
+            background: theme === 'light' 
+              ? `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 30%, rgba(251, 191, 36, 0.1) 60%, rgba(255, 255, 255, 0.8) 100%)`
+              : `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(34, 211, 238, 0.1) 0%, rgba(0, 0, 0, 0.9) 40%, rgba(147, 51, 234, 0.05) 100%)`
           }}
         />
         
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
+        
+        {/* Subtle pattern */}
+        <div className={`absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] ${theme === 'light' ? 'opacity-20' : 'opacity-30'}`} />
       </div>
 
       {/* Minimal floating elements for performance */}
@@ -94,18 +103,22 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-6"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">
+          <h1 className="text-6xl md:text-8xl font-bold mb-4">
+            <span className={`bg-gradient-to-r ${
+              theme === 'light' 
+                ? 'from-purple-600 via-blue-600 to-yellow-500' 
+                : 'from-cyan-400 via-purple-400 to-pink-500'
+            } bg-clip-text text-transparent`}>
               T Manas Chakravarty
             </span>
           </h1>
           
           <div className="flex items-center justify-center mb-4">
-            <Code className="text-cyan-400 mr-3" size={24} />
-            <h2 className="text-2xl md:text-3xl font-semibold text-white">
+            <Code className={`${theme === 'light' ? 'text-purple-600' : 'text-cyan-400'} mr-3`} size={24} />
+            <h2 className={`text-3xl md:text-4xl font-semibold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
               Blockchain Developer & Cybersecurity Specialist
             </h2>
-            <Sparkles className="text-purple-400 ml-3" size={24} />
+            <Sparkles className={`${theme === 'light' ? 'text-yellow-500' : 'text-purple-400'} ml-3`} size={24} />
           </div>
         </motion.div>
 
@@ -116,10 +129,10 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mb-8"
         >
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Final-year <span className="text-cyan-400 font-semibold">B.Tech (CSE Hons.)</span> student specializing in
-            <span className="text-purple-400 font-semibold"> Cybersecurity</span> and
-            <span className="text-cyan-400 font-semibold"> Blockchain</span>. Building secure, efficient, and innovative software solutions.
+          <p className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
+            Final-year <span className={`${theme === 'light' ? 'text-purple-600' : 'text-cyan-400'} font-semibold`}>B.Tech (CSE Hons.)</span> student specializing in
+            <span className={`${theme === 'light' ? 'text-blue-600' : 'text-purple-400'} font-semibold`}> Cybersecurity</span> and
+            <span className={`${theme === 'light' ? 'text-yellow-600' : 'text-cyan-400'} font-semibold`}> Blockchain</span>. Building secure, efficient, and innovative software solutions.
           </p>
         </motion.div>
 
@@ -161,7 +174,11 @@ export function HeroSection() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToAbout}
-            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2"
+            className={`px-8 py-4 rounded-2xl font-semibold text-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 ${
+              theme === 'light'
+                ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600'
+                : 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-600 hover:to-purple-700'
+            }`}
           >
             <Sparkles size={20} />
             Explore My Work
@@ -171,7 +188,11 @@ export function HeroSection() {
             href="#contact"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2"
+            className={`px-8 py-4 backdrop-blur-sm rounded-2xl font-semibold text-xl transition-all duration-300 flex items-center justify-center gap-2 ${
+              theme === 'light'
+                ? 'bg-white/80 border border-purple-200 text-gray-800 hover:bg-white hover:border-purple-300'
+                : 'bg-white/10 border border-white/20 text-white hover:bg-white/20'
+            }`}
           >
             <Mail size={20} />
             Get In Touch
