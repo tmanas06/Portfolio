@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail, Twitter, Code, Shield, Zap, Heart } from 'lucid
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
-  const quickLinks = ['Home', 'About', 'Skills', 'Projects', 'Contact', 'Messages']
+  const quickLinks = ['Home', 'About', 'Skills', 'Experience', 'Projects', 'Contact', 'Messages']
   
   const socialLinks = [
     { icon: Github, href: 'https://github.com/tmanas06', label: 'GitHub' },
