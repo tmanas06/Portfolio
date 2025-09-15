@@ -11,64 +11,94 @@ export function ProjectsSection() {
 
   const projects = [
     {
-      title: 'SecureVault - Blockchain Security',
-      description: 'A comprehensive security platform for smart contracts with automated vulnerability detection.',
+      title: 'DeepRevenueSharingSystem (MVP)',
+      description: 'Implemented UI for a decentralized profit-sharing platform, boosting payout efficiency. Enabled custom analytics dashboards and automated distribution with smart contract integration.',
       image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop',
-      technologies: ['Solidity', 'React.js', 'Web3.js', 'Ethereum'],
+      technologies: ['React', 'Solidity', 'Web3.js', 'Chart.js', 'Ethers.js'],
       category: 'Blockchain',
       status: 'Live',
-      github: 'https://github.com/tmanas06',
-      demo: '#'
+      github: 'https://github.com/tmanas06/DeepRevenueSharingSystem',
+      demo: 'https://deep-revenue-sharing.vercel.app'
     },
     {
-      title: 'CyberShield - Penetration Testing',
-      description: 'Advanced penetration testing framework with automated vulnerability scanning capabilities.',
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop',
-      technologies: ['Python', 'Django', 'PostgreSQL', 'Docker'],
-      category: 'Cybersecurity',
-      status: 'In Development',
-      github: 'https://github.com/tmanas06',
-      demo: null
+      title: 'MonadGame',
+      description: 'Built a real-time, optimized on-chain interactive gaming dApp on the Monad Blockchain featuring 3 swipe-based mini-games and 1 predictive gameplay mode with seamless Web3 integration.',
+      image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=400&fit=crop',
+      technologies: ['React', 'Monad Blockchain', 'Web3', 'Solidity', 'TypeScript'],
+      category: 'Blockchain',
+      status: 'Live',
+      github: 'https://github.com/tmanas06/MonadGame',
+      demo: 'https://monad-game.vercel.app'
     },
     {
-      title: 'DeFi Tracker - Portfolio Management',
-      description: 'Decentralized finance portfolio tracker with real-time monitoring and yield optimization.',
-      image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600&h=400&fit=crop',
-      technologies: ['Next.js', 'TypeScript', 'Ethereum', 'The Graph'],
+      title: 'Stellar Blend Launchpad',
+      description: 'Engineered a project launchpad DApp, streamlining project onboarding by 40% with automated liquidity provisioning. Improved UX with intuitive transaction flow and vesting schedules.',
+      image: 'https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=600&h=400&fit=crop',
+      technologies: ['React', 'Solidity', 'Web3', 'IPFS', 'Tailwind CSS'],
       category: 'DeFi',
       status: 'Live',
-      github: 'https://github.com/tmanas06',
-      demo: '#'
+      github: 'https://github.com/tmanas06/StellarBlendLaunchpad',
+      demo: 'https://stellar-blend-launchpad.vercel.app'
     },
     {
-      title: 'Smart Contract Marketplace',
-      description: 'Decentralized marketplace for buying and selling smart contracts with escrow systems.',
-      image: 'https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=600&h=400&fit=crop',
-      technologies: ['React.js', 'Solidity', 'IPFS', 'MetaMask'],
-      category: 'Blockchain',
+      title: 'Crypto Market Analysis',
+      description: 'Built a Python-based analytics engine for real-time crypto trends. Automated SMS/email notifications on market shifts for proactive trading with advanced data visualization.',
+      image: 'https://images.unsplash.com/photo-1639322537228-f912e770e8c9?w=600&h=400&fit=crop',
+      technologies: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'APIs'],
+      category: 'Analytics',
       status: 'Live',
-      github: 'https://github.com/tmanas06',
-      demo: '#'
+      github: 'https://github.com/tmanas06/CryptoMarketAnalysis',
+      demo: 'https://crypto-analysis-dashboard.vercel.app'
     },
     {
-      title: 'Security Audit Dashboard',
-      description: 'Dashboard for security professionals to manage audits and track vulnerabilities.',
+      title: 'HomeRental DApp',
+      description: 'Delivered a decentralized rental platform with escrow and verification, reducing contract disputes by 30%. Features smart contract-based rental agreements and automated payments.',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-      technologies: ['Vue.js', 'Python', 'FastAPI', 'MongoDB'],
-      category: 'Cybersecurity',
+      technologies: ['React', 'Solidity', 'Web3', 'IPFS', 'Ethers.js'],
+      category: 'Blockchain',
       status: 'Live',
-      github: 'https://github.com/tmanas06',
-      demo: '#'
+      github: 'https://github.com/tmanas06/HomeRentalDApp',
+      demo: 'https://home-rental-dapp.vercel.app'
     },
     {
-      title: 'Cross-Chain Bridge Protocol',
-      description: 'Secure cross-chain bridge enabling asset transfers between blockchain networks.',
+      title: 'Revenue Analytics Dashboard',
+      description: 'Built a scalable React dashboard visualizing state-wise revenue data (FY17–FY26 BE) through extensive budget research and data extraction with 99.9% accuracy. Integrated export features (Excel) for policymakers.',
       image: 'https://images.unsplash.com/photo-1639322537228-f7121772abcf?w=600&h=400&fit=crop',
-      technologies: ['Rust', 'Substrate', 'Polkadot', 'Ethereum'],
+      technologies: ['React', 'Chart.js', 'Excel Export', 'Data Analysis', 'API Integration'],
+      category: 'Analytics',
+      status: 'Live',
+      github: 'https://github.com/tmanas06/RevenueAnalyticsDashboard',
+      demo: 'https://revenue-analytics-dashboard.vercel.app'
+    },
+    {
+      title: 'Flight Ticketing DApp',
+      description: 'Implemented a decentralized flight booking platform with wallet integration and smart contract-based refunds, booking success and NFT implementation on testnet achieving 99.9% success rate.',
+      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop',
+      technologies: ['React', 'Solidity', 'Web3', 'NFTs', 'Smart Contracts'],
       category: 'Blockchain',
-      status: 'In Development',
-      github: 'https://github.com/tmanas06',
-      demo: null
+      status: 'Live',
+      github: 'https://github.com/tmanas06/FlightTicketingDApp',
+      demo: 'https://flight-ticketing-dapp.vercel.app'
+    },
+    {
+      title: 'Web3JobSite',
+      description: 'A comprehensive job platform built for the Web3 ecosystem, connecting blockchain developers, DeFi experts, and crypto professionals with innovative companies in the decentralized space.',
+      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
+      technologies: ['TypeScript', 'React', 'Web3', 'Node.js', 'MongoDB'],
+      category: 'Web3',
+      status: 'Live',
+      github: 'https://github.com/tmanas06/web3JobSite',
+      demo: 'https://web3jobsite.vercel.app'
+    },
+    {
+      title: 'Bubble Shooter',
+      description: 'Mini dApp on Farcaster featuring an interactive bubble shooter game with Web3 integration. Built with TypeScript and deployed on the Farcaster protocol for seamless social gaming experience.',
+      image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600&h=400&fit=crop',
+      technologies: ['TypeScript', 'Farcaster', 'Web3', 'Canvas API', 'React'],
+      category: 'Gaming',
+      status: 'Live',
+      github: 'https://github.com/tmanas06/Bubble_Shooter',
+      demo: 'https://bubble-shooter-farcaster.vercel.app'
     }
   ]
 
@@ -77,6 +107,9 @@ export function ProjectsSection() {
       case 'Blockchain': return 'from-cyan-500 to-blue-600'
       case 'Cybersecurity': return 'from-red-500 to-orange-600'
       case 'DeFi': return 'from-purple-500 to-pink-600'
+      case 'Analytics': return 'from-green-500 to-emerald-600'
+      case 'Web3': return 'from-indigo-500 to-purple-600'
+      case 'Gaming': return 'from-pink-500 to-rose-600'
       default: return 'from-gray-500 to-gray-600'
     }
   }
