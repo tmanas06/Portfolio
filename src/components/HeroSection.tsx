@@ -44,11 +44,27 @@ export const HeroSection = memo(function HeroSection() {
 
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 text-center">
-        {/* Profile Section */}
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="mb-8"
+        >
+          <div className="flex items-center justify-center mb-6">
+            <Code className={`${theme === 'light' ? 'text-purple-600' : 'text-cyan-400'} mr-3`} size={28} />
+            <h2 className={`text-3xl md:text-5xl font-semibold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
+              Blockchain Developer & Cybersecurity Specialist
+            </h2>
+            <Sparkles className={`${theme === 'light' ? 'text-yellow-500' : 'text-purple-400'} ml-3`} size={28} />
+          </div>
+        </motion.div>
+
+        {/* Profile Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-8"
         >
           <div className="relative inline-block">
@@ -61,32 +77,22 @@ export const HeroSection = memo(function HeroSection() {
               />
             </div>
           </div>
-        </motion.div>
-
-        {/* Name and Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6"
-        >
-          <h1 className="text-6xl md:text-8xl font-bold mb-4">
-            <span className={`bg-gradient-to-r ${
-              theme === 'light' 
-                ? 'from-purple-600 via-blue-600 to-yellow-500' 
-                : 'from-cyan-400 via-purple-400 to-pink-500'
-            } bg-clip-text text-transparent`}>
-              T Manas Chakravarty
-            </span>
-          </h1>
           
-          <div className="flex items-center justify-center mb-4">
-            <Code className={`${theme === 'light' ? 'text-purple-600' : 'text-cyan-400'} mr-3`} size={24} />
-            <h2 className={`text-3xl md:text-4xl font-semibold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
-              Blockchain Developer & Cybersecurity Specialist
-            </h2>
-            <Sparkles className={`${theme === 'light' ? 'text-yellow-500' : 'text-purple-400'} ml-3`} size={24} />
-          </div>
+          {/* Name below profile picture */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-6"
+          >
+            <h1 className={`text-4xl md:text-5xl font-bold ${
+              theme === 'light' 
+                ? 'text-gray-800' 
+                : 'text-white'
+            }`}>
+              T Manas Chakravarty
+            </h1>
+          </motion.div>
         </motion.div>
 
         {/* Description */}
