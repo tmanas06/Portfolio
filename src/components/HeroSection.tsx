@@ -4,76 +4,36 @@ import { ChevronDown, Github, Linkedin, Mail, Twitter, Sparkles, Zap, Code, Down
 import { useTheme } from '../contexts/ThemeContext'
 
 export function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const { theme } = useTheme()
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  const scrollToAbout = () => {
-    const element = document.querySelector('#about')
+  const scrollToTabs = () => {
+    const element = document.querySelector('[data-slot="tabs"]')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
   return (
-    <motion.section 
+    <section 
       id="home" 
       className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden transition-all duration-500 ${
         theme === 'light' 
           ? 'bg-gradient-to-br from-purple-50 via-blue-50 to-yellow-50' 
           : 'bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-yellow-900/10'
       }`}
-      style={{ y, opacity }}
     >
-      {/* Anime-inspired Background */}
+      {/* Simplified Background */}
       <div className="absolute inset-0">
-        {/* Dynamic gradient with mouse tracking */}
         <div 
-          className="absolute inset-0 transition-all duration-1000"
-          style={{
-            background: theme === 'light' 
-              ? `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.1) 30%, rgba(251, 191, 36, 0.1) 60%, rgba(255, 255, 255, 0.8) 100%)`
-              : `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(34, 211, 238, 0.1) 0%, rgba(0, 0, 0, 0.9) 40%, rgba(147, 51, 234, 0.05) 100%)`
-          }}
+          className={`absolute inset-0 ${
+            theme === 'light' 
+              ? 'bg-gradient-to-br from-purple-100/30 via-blue-100/20 to-yellow-100/20' 
+              : 'bg-gradient-to-br from-purple-900/30 via-blue-900/20 to-cyan-900/10'
+          }`}
         />
-        
-        
-        {/* Subtle pattern */}
-        <div className={`absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] ${theme === 'light' ? 'opacity-20' : 'opacity-30'}`} />
       </div>
 
-      {/* Minimal floating elements for performance */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={{ 
-            x: [0, 50, 0], 
-            y: [0, -30, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 right-20 w-20 h-20 rounded-full bg-gradient-to-r from-cyan-400/10 to-purple-600/10 backdrop-blur-sm border border-white/5"
-        />
-        
-        <motion.div
-          animate={{ 
-            x: [0, -40, 0], 
-            y: [0, 40, 0],
-            scale: [1, 0.9, 1]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-32 left-32 w-16 h-16 rounded-full bg-gradient-to-r from-purple-400/8 to-pink-600/8 backdrop-blur-sm border border-white/5"
-        />
-      </div>
+      {/* Removed floating elements for better performance */}
 
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 text-center">
@@ -173,7 +133,7 @@ export function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            onClick={scrollToAbout}
+            onClick={scrollToTabs}
             className={`px-8 py-4 rounded-2xl font-semibold text-xl shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 ${
               theme === 'light'
                 ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600'
@@ -200,16 +160,13 @@ export function HeroSection() {
         </motion.div>
 
         {/* Scroll Indicator */}
-        <motion.button
-          onClick={scrollToAbout}
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          whileHover={{ scale: 1.1 }}
-          className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-cyan-400 hover:bg-white/10 transition-all duration-300"
+        <button
+          onClick={scrollToTabs}
+          className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105"
         >
           <ChevronDown size={24} />
-        </motion.button>
+        </button>
       </div>
-    </motion.section>
+    </section>
   )
 }

@@ -4,7 +4,11 @@ import { Menu, X, Code, Shield, Zap } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import { useTheme } from '../contexts/ThemeContext'
 
-export function Navigation() {
+interface NavigationProps {
+  onTabSwitch?: (tabValue: string) => void
+}
+
+export function Navigation({ onTabSwitch }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { theme } = useTheme()
@@ -19,18 +23,29 @@ export function Navigation() {
 
   const navItems = [
     { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
-    { href: '#messages', label: 'Messages' }
+    { href: '#tabs', label: 'About', tabValue: 'about' },
+    { href: '#tabs', label: 'Skills', tabValue: 'skills' },
+    { href: '#tabs', label: 'Experience', tabValue: 'experience' },
+    { href: '#tabs', label: 'Projects', tabValue: 'projects' },
+    { href: '#tabs', label: 'Contact', tabValue: 'contact' },
+    { href: '#tabs', label: 'Messages', tabValue: 'messages' }
   ]
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  const scrollToSection = (href: string, tabValue?: string) => {
+    if (href === '#home') {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else if (href === '#tabs') {
+      const tabsElement = document.querySelector('[data-slot="tabs"]')
+      if (tabsElement) {
+        tabsElement.scrollIntoView({ behavior: 'smooth' })
+        // Switch to the specific tab if tabValue is provided
+        if (tabValue && onTabSwitch) {
+          setTimeout(() => onTabSwitch(tabValue), 500) // Small delay to allow scroll to complete
+        }
+      }
     }
     setIsMobileMenuOpen(false)
   }
@@ -64,7 +79,7 @@ export function Navigation() {
             {navItems.map((item, index) => (
               <motion.button
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => scrollToSection(item.href, item.tabValue)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`${theme === 'light' ? 'text-gray-700 hover:text-purple-600' : 'text-gray-300 hover:text-white'} transition-colors duration-300 font-medium text-lg`}
@@ -100,7 +115,7 @@ export function Navigation() {
             {navItems.map((item, index) => (
               <motion.button
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => scrollToSection(item.href, item.tabValue)}
                 whileHover={{ scale: 1.02, x: 10 }}
                 whileTap={{ scale: 0.98 }}
                 className="block w-full text-left px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300"
