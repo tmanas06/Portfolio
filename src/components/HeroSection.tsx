@@ -2,6 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { motion } from 'motion/react'
 import { ChevronDown, Github, Linkedin, Mail, Twitter, Sparkles, Code } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
+import { ThemeToggle } from './ThemeToggle'
 
 export const HeroSection = memo(function HeroSection() {
   const { theme } = useTheme()
@@ -54,7 +55,7 @@ export const HeroSection = memo(function HeroSection() {
           <div className="flex items-center justify-center mb-6">
             <Code className={`${theme === 'light' ? 'text-purple-600' : 'text-cyan-400'} mr-3`} size={28} />
             <h2 className={`text-3xl md:text-5xl font-semibold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
-              -*---------------*---------------*-
+              *               *              *
             </h2>
             <Sparkles className={`${theme === 'light' ? 'text-yellow-500' : 'text-purple-400'} ml-3`} size={28} />
           </div>
@@ -124,7 +125,7 @@ export const HeroSection = memo(function HeroSection() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-300 ${social.color}`}
+              className={`w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center ${theme === 'light' ? 'text-gray-700' : 'text-white'} transition-all duration-300 ${social.color}`}
             >
               <social.icon size={20} />
             </motion.a>
@@ -167,13 +168,30 @@ export const HeroSection = memo(function HeroSection() {
           </motion.a>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <button
-          onClick={scrollToTabs}
-          className="p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-cyan-400 hover:bg-white/10 transition-all duration-300 hover:scale-105"
-        >
-          <ChevronDown size={24} />
-        </button>
+        {/* Scroll Indicator and Theme Toggle */}
+        <div className="flex items-center gap-4">
+          {/* Floating Theme Toggle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="relative"
+          >
+            <ThemeToggle />
+          </motion.div>
+          
+          {/* Scroll Indicator */}
+          <button
+            onClick={scrollToTabs}
+            className={`p-3 rounded-full backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+              theme === 'light'
+                ? 'bg-white/20 border-gray-300 text-purple-600 hover:bg-white/30'
+                : 'bg-white/5 border-white/20 text-cyan-400 hover:bg-white/10'
+            }`}
+          >
+            <ChevronDown size={24} />
+          </button>
+        </div>
       </div>
     </section>
   )

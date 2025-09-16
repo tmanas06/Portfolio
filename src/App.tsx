@@ -15,9 +15,6 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    // Add dark class to html element for dark mode
-    document.documentElement.classList.add('dark')
-    
     // Set smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth'
     

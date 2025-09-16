@@ -11,7 +11,7 @@ interface NavigationProps {
 export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme } = useTheme()
+  const { theme, toggleTheme } = useTheme()
 
   const navItems = useMemo(() => [
     { href: '#home', label: 'Home' },
@@ -70,7 +70,7 @@ export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationPr
             <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center">
               <Code size={20} className="text-white" />
             </div>
-            <span className="text-2xl font-bold text-white">T Manas</span>
+            <span className={`text-2xl font-bold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>Portfolio</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -86,18 +86,41 @@ export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationPr
                 {item.label}
               </motion.button>
             ))}
-            <ThemeToggle />
+            {/* Theme Toggle with enhanced visibility */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                theme === 'light' 
+                  ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg hover:shadow-xl' 
+                  : 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg hover:shadow-xl'
+              }`}
+            >
+              <motion.div
+                key={theme}
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+                className="text-xl"
+              >
+                {theme === 'dark' ? '☀️' : '🌙'}
+              </motion.div>
+            </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors duration-300"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          {/* Mobile Menu Button and Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-gray-300 hover:text-white transition-colors duration-300"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -122,6 +145,13 @@ export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationPr
                 {item.label}
               </motion.button>
             ))}
+            {/* Theme Toggle in Mobile Menu */}
+            <div className="px-4 py-3 border-t border-white/10">
+              <div className="flex items-center justify-between">
+                <span className="text-gray-300 text-sm font-medium">Theme</span>
+                <ThemeToggle />
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

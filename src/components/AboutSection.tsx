@@ -1,8 +1,10 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform, useInView } from 'motion/react'
 import { Code, Palette, Rocket, Users, Sparkles, Zap, Shield, Target, Award, BookOpen, Briefcase } from 'lucide-react'
+import { useTheme } from '../contexts/ThemeContext'
 
 export function AboutSection() {
+  const { theme } = useTheme()
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -50])
   const ref = useRef(null)
@@ -69,7 +71,7 @@ export function AboutSection() {
           <h2 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
             About Me
           </h2>
-          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
+          <p className={`text-xl max-w-2xl mx-auto ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
             Passionate about building secure, innovative solutions at the intersection of blockchain and cybersecurity
           </p>
         </motion.div>
@@ -95,8 +97,8 @@ export function AboutSection() {
               <div className={`w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center`}>
                 <stat.icon size={24} className="text-white" />
               </div>
-              <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
-              <div className="text-gray-400 text-base">{stat.label}</div>
+              <div className={`text-4xl font-bold mb-2 ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>{stat.value}</div>
+              <div className={`text-base ${theme === 'light' ? 'text-gray-600' : 'text-gray-400'}`}>{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -124,8 +126,8 @@ export function AboutSection() {
                   <skill.icon size={28} className="text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-semibold text-white mb-3">{skill.title}</h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">{skill.description}</p>
+                  <h3 className={`text-2xl font-semibold mb-3 ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>{skill.title}</h3>
+                  <p className={`text-lg leading-relaxed ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>{skill.description}</p>
                 </div>
               </div>
             </motion.div>
@@ -141,8 +143,8 @@ export function AboutSection() {
           className="text-center mt-16"
         >
           <div className="bg-gradient-to-r from-cyan-500/10 to-purple-600/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to work together?</h3>
-            <p className="text-gray-300 mb-6">
+            <h3 className={`text-2xl font-bold mb-4 ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>Ready to work together?</h3>
+            <p className={`mb-6 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
               I'm always excited to collaborate on innovative projects and solve complex challenges.
             </p>
             <motion.a
