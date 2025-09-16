@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo, useCallback, useMemo } from 'react'
 import { motion } from 'motion/react'
-import { Menu, X, Code, Shield, Zap } from 'lucide-react'
+import { Menu, X, Code } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 import { useTheme } from '../contexts/ThemeContext'
 
@@ -8,20 +8,12 @@ interface NavigationProps {
   onTabSwitch?: (tabValue: string) => void
 }
 
-export function Navigation({ onTabSwitch }: NavigationProps) {
+export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { theme } = useTheme()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const navItems = [
+  const navItems = useMemo(() => [
     { href: '#home', label: 'Home' },
     { href: '#tabs', label: 'About', tabValue: 'about' },
     { href: '#tabs', label: 'Skills', tabValue: 'skills' },
@@ -29,9 +21,9 @@ export function Navigation({ onTabSwitch }: NavigationProps) {
     { href: '#tabs', label: 'Projects', tabValue: 'projects' },
     { href: '#tabs', label: 'Contact', tabValue: 'contact' },
     { href: '#tabs', label: 'Messages', tabValue: 'messages' }
-  ]
+  ], [])
 
-  const scrollToSection = (href: string, tabValue?: string) => {
+  const scrollToSection = useCallback((href: string, tabValue?: string) => {
     if (href === '#home') {
       const element = document.querySelector(href)
       if (element) {
@@ -41,14 +33,21 @@ export function Navigation({ onTabSwitch }: NavigationProps) {
       const tabsElement = document.querySelector('[data-slot="tabs"]')
       if (tabsElement) {
         tabsElement.scrollIntoView({ behavior: 'smooth' })
-        // Switch to the specific tab if tabValue is provided
         if (tabValue && onTabSwitch) {
-          setTimeout(() => onTabSwitch(tabValue), 500) // Small delay to allow scroll to complete
+          setTimeout(() => onTabSwitch(tabValue), 500)
         }
       }
     }
     setIsMobileMenuOpen(false)
-  }
+  }, [onTabSwitch])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <motion.nav
@@ -128,4 +127,4 @@ export function Navigation({ onTabSwitch }: NavigationProps) {
       </div>
     </motion.nav>
   )
-}
+})

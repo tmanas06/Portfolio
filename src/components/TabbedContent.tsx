@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useState, lazy, Suspense } from 'react'
+import React, { forwardRef, useImperativeHandle, useState, lazy, Suspense, memo, useMemo, useCallback } from 'react'
 import { motion } from 'motion/react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs'
 import { useTheme } from '../contexts/ThemeContext'
@@ -12,17 +12,19 @@ const ProjectsSection = lazy(() => import('./ProjectsSection').then(module => ({
 const ContactSection = lazy(() => import('./ContactSection').then(module => ({ default: module.ContactSection })))
 const MessagesSection = lazy(() => import('./MessagesSection').then(module => ({ default: module.MessagesSection })))
 
-export const TabbedContent = forwardRef<{ switchToTab: (tabValue: string) => void }>((props, ref) => {
+export const TabbedContent = memo(forwardRef<{ switchToTab: (tabValue: string) => void }>((props, ref) => {
   const { theme } = useTheme()
   const [activeTab, setActiveTab] = useState('about')
 
-  useImperativeHandle(ref, () => ({
-    switchToTab: (tabValue: string) => {
-      setActiveTab(tabValue)
-    }
-  }))
+  const switchToTab = useCallback((tabValue: string) => {
+    setActiveTab(tabValue)
+  }, [])
 
-  const tabItems = [
+  useImperativeHandle(ref, () => ({
+    switchToTab
+  }), [switchToTab])
+
+  const tabItems = useMemo(() => [
     { 
       value: 'about', 
       label: 'About', 
@@ -59,14 +61,14 @@ export const TabbedContent = forwardRef<{ switchToTab: (tabValue: string) => voi
       icon: MessageSquare,
       component: MessagesSection
     }
-  ]
+  ], [])
 
-  // Loading component for better UX
-  const LoadingSpinner = () => (
+  // Memoized loading component
+  const LoadingSpinner = memo(() => (
     <div className="flex items-center justify-center py-20">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500"></div>
     </div>
-  )
+  ))
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
@@ -105,14 +107,9 @@ export const TabbedContent = forwardRef<{ switchToTab: (tabValue: string) => voi
               className="mt-0"
             >
               <Suspense fallback={<LoadingSpinner />}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full"
-                >
+                <div className="w-full animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
                   <Component />
-                </motion.div>
+                </div>
               </Suspense>
             </TabsContent>
           )
@@ -120,4 +117,4 @@ export const TabbedContent = forwardRef<{ switchToTab: (tabValue: string) => voi
       </Tabs>
     </div>
   )
-})
+}))

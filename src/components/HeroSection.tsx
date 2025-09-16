@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { motion, useScroll, useTransform } from 'motion/react'
-import { ChevronDown, Github, Linkedin, Mail, Twitter, Sparkles, Zap, Code, Download, MapPin } from 'lucide-react'
+import React, { memo, useCallback, useMemo } from 'react'
+import { motion } from 'motion/react'
+import { ChevronDown, Github, Linkedin, Mail, Twitter, Sparkles, Code } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 
-export function HeroSection() {
+export const HeroSection = memo(function HeroSection() {
   const { theme } = useTheme()
 
-  const scrollToTabs = () => {
+  const scrollToTabs = useCallback(() => {
     const element = document.querySelector('[data-slot="tabs"]')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
-  }
+  }, [])
+
+  const socialLinks = useMemo(() => [
+    { icon: Github, href: 'https://github.com/tmanas06', label: 'GitHub', color: 'hover:bg-gray-800' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/t-manas-chakravarty-91958224b/', label: 'LinkedIn', color: 'hover:bg-blue-600' },
+    { icon: Mail, href: 'mailto:2210030003cse@gmail.com', label: 'Email', color: 'hover:bg-red-500' },
+    { icon: Twitter, href: 'https://x.com/tmanas2004', label: 'Twitter', color: 'hover:bg-sky-500' }
+  ], [])
 
   return (
     <section 
@@ -103,12 +110,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {[
-            { icon: Github, href: 'https://github.com/tmanas06', label: 'GitHub', color: 'hover:bg-gray-800' },
-            { icon: Linkedin, href: 'https://www.linkedin.com/in/t-manas-chakravarty-91958224b/', label: 'LinkedIn', color: 'hover:bg-blue-600' },
-            { icon: Mail, href: 'mailto:2210030003cse@gmail.com', label: 'Email', color: 'hover:bg-red-500' },
-            { icon: Twitter, href: 'https://x.com/tmanas2004', label: 'Twitter', color: 'hover:bg-sky-500' }
-          ].map((social, index) => (
+          {socialLinks.map((social) => (
             <motion.a
               key={social.label}
               href={social.href}
@@ -169,4 +171,4 @@ export function HeroSection() {
       </div>
     </section>
   )
-}
+})
