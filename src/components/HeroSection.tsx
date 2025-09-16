@@ -55,7 +55,7 @@ export const HeroSection = memo(function HeroSection() {
           <div className="flex items-center justify-center mb-6">
             <Code className={`${theme === 'light' ? 'text-purple-600' : 'text-cyan-400'} mr-3`} size={28} />
             <h2 className={`text-3xl md:text-5xl font-semibold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
-              *               *              *
+              _____________________________________________________
             </h2>
             <Sparkles className={`${theme === 'light' ? 'text-yellow-500' : 'text-purple-400'} ml-3`} size={28} />
           </div>
