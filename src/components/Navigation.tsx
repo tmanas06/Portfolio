@@ -87,7 +87,7 @@ export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationPr
               </motion.button>
             ))}
             {/* Theme Toggle with enhanced visibility */}
-            <motion.button
+            {/* <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -97,7 +97,7 @@ export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationPr
                   : 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg hover:shadow-xl'
               }`}
             >
-              <motion.div
+              {/* <motion.div
                 key={theme}
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
@@ -105,8 +105,8 @@ export const Navigation = memo(function Navigation({ onTabSwitch }: NavigationPr
                 className="text-xl"
               >
                 {theme === 'dark' ? '☀️' : '🌙'}
-              </motion.div>
-            </motion.button>
+              </motion.div> */}
+            {/* </motion.button> */} 
           </div>
 
           {/* Mobile Menu Button and Theme Toggle */}
